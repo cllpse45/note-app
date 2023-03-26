@@ -12,7 +12,8 @@ const converter = new Showdown.Converter({
 
 export default function Editor() {
   const [value, setValue] = React.useState("**Hello world!!!**");
-  const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
+  const [selectedTab, setSelectedTab] = React.useState("write")
+
   return (
     <div className="container">
       <ReactMde
@@ -20,7 +21,7 @@ export default function Editor() {
         onChange={setValue}
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
-        generateMarkdownPreview={markdown =>
+        generateMarkdownPreview={(markdown) =>
           Promise.resolve(converter.makeHtml(markdown))
         }
       />
