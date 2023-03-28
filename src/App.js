@@ -10,6 +10,9 @@ function App() {
     () => JSON.parse(localStorage.getItem("notes")) || []
   );
 
+    const [currentNotId, setCurrentNotId] = React.useState(notes[0]?.id);
+
+
   React.useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
@@ -23,14 +26,36 @@ function App() {
     setNotes((prevNotes) => [newNote, ...prevNotes]);
   }
 
+  function deleteNote(event,noteId){
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
+  }
+
+
+  function getCurrentNote(){
+
+    return(
+      notes.find((note) => {
+        return note.id ===currentNotId
+      })
+    )
+    
+    
+    //const ages = [18,20,30,40,65]
+    //const result = ages.find(age => age >30);
+
+
+  }
+
+
+
   return (
     <div className="App">
       <main>
         {notes.length > 0 ? (
           <div>
             <Split sizes={[25, 75]} direction="horizontal" className="split">
-              <Sidebar notes={notes} newNote={createNewNote} />
-              <Editor />
+              <Sidebar notes={notes} newNote={createNewNote} deleteNote={deleteNote} currentNote={getCurrentNote} />
+              <Editor currentNote={getCurrentNote()} />
             </Split>
           </div>
         ) : (
