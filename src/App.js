@@ -71,12 +71,28 @@ function App() {
       })
     )
     
-    
     //const ages = [18,20,30,40,65]
     //const result = ages.find(age => age >30);
-
-
   }
+
+
+//Arrow Function Example
+// (parameters) => {logic}   - base arrow function
+
+function counterFunc(counter){
+  if(counter>100){
+    counter = 0;
+  }else{
+    counter++;
+  }
+
+  return counter;
+}
+
+const counterFunc2 = (counter) => {counter > 100 ? 0 : counter++};
+
+
+
 
 
 
