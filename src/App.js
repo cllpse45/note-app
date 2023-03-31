@@ -43,13 +43,22 @@ function App() {
       body: noteBody
     };
 
+    const updatedNotes = [...notes];
+    updatedNotes[noteIndex] = updatedNote;
+
+    setNotes[updatedNotes];
+
+
+
+    //2.yol
+    /*
     setNotes((prevNotes) => {
       const updatedNotes =[...prevNotes];
       updatedNotes[noteIndex] = updatedNote;
       return updatedNotes;
-    })
+    });
+    */
     
-    //setNotes()
   }
 
 
