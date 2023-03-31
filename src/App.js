@@ -30,6 +30,29 @@ function App() {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId))
   }
 
+  function updateNote(noteBody){
+    
+    const noteIndex = notes.findIndex((note) => note.id === currentNoteId)
+    
+    if(noteIndex === -1){
+      return;
+    }
+
+    const updatedNote = {
+      id: currentNotId,
+      body: noteBody
+    };
+
+    setNotes((prevNotes) => {
+      const updatedNotes =[...prevNotes];
+      updatedNotes[noteIndex] = updatedNote;
+      return updatedNotes;
+    })
+    
+    //setNotes()
+  }
+
+
 
   function getCurrentNote(){
 
@@ -54,8 +77,14 @@ function App() {
         {notes.length > 0 ? (
           <div>
             <Split sizes={[25, 75]} direction="horizontal" className="split">
-              <Sidebar notes={notes} newNote={createNewNote} deleteNote={deleteNote} currentNote={getCurrentNote} />
-              <Editor currentNote={getCurrentNote()} />
+              <Sidebar 
+              notes={notes} 
+              newNote={createNewNote} 
+              deleteNote={deleteNote} 
+              currentNote={getCurrentNote}
+              setCurrentNotId={setCurrentNotId}
+              />
+              <Editor currentNote={getCurrentNote} updateNote={updateNote} />
             </Split>
           </div>
         ) : (

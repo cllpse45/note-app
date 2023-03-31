@@ -17,8 +17,8 @@ export default function Editor(props) {
   return (
     <div className="container">
       <ReactMde
-        value={props.currentNote.body}
-        //onChange={setValue}
+        value={props.currentNote().body}
+        onChange={props.updateNote}
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
         generateMarkdownPreview={(markdown) =>
